@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import React from 'react';
 import express from "express";
 import cors from "cors";
@@ -12,7 +14,7 @@ import configureStore from './redux/configureStore';
 
 const server = express();
 
-server.use(cors());
+// server.use(cors());
 server.use(express.static('public'));
 
 server.get("*", (req, res, next) => {
@@ -35,11 +37,14 @@ server.get("*", (req, res, next) => {
       <head>
         <title>SSR with RR</title>
         <script src="/bundle.js" defer></script>
-        <script>window.__INITIAL_DATA__ = ${serialize(store.getState())}</script>
       </head>
 
       <body>
         <div id="app">${markup}</div>
+
+        <script type="text/javascript">
+          window.__INITIAL_STATE__ = ${serialize(store.getState())};
+        </script>
       </body>
     </html>
   `)

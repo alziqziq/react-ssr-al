@@ -1,9 +1,18 @@
 import * as types from './types';
 
-const initialState = {};
+const initialState = {
+  loading: {
+    loading: false
+  }
+};
 
 const ACTION_HANDLERS = {
-  
+  [types.SET_LOADING]: (state, action) => {
+    return {
+      ...state,
+      loading: action.bool
+    };
+  },
 };
 
 export default (state = initialState, action) => {

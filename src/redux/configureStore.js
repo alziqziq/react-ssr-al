@@ -6,6 +6,8 @@ import reducers from './reducers';
 import actionCreators from './actions';
 
 export default function configureStore(preloadedState = {}, client = null) {
+  console.log('process.env', process.env.NODE_ENV);
+
   const DEV = process.env.NODE_ENV !== 'production';
   const middleware = [reduxClientMiddleware(client), thunk];
   let composeEnhancers = compose;
